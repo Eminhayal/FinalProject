@@ -1,12 +1,13 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
-{
-    public interface IEntityRepository<T> where T: class,IEntity,new()
+namespace Core.DataAccess
+{ 
+    //Core katmanı evrensel katmandır. Bütün projelerde kullanılır
+    public interface IEntityRepository<T> where T: class, IEntity, new() 
     {
         // Generic Constraint
         // Class : Referans tip olabilir
