@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-            if (product.ProductName.Length <2 )
+            if (product.ProductName.Length < 2)
             {
                 // magic strings 
                 return new ErrorResult(Messages.ProductNameInvalid);
@@ -38,7 +38,7 @@ namespace Business.Concrete
             //Yetkisi var mi ?
             // Bir iŞ sınıfı başka sınıfları newlemez
 
-            if (DateTime.Now.Hour == 22 )
+            if (DateTime.Now.Hour == 22)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
@@ -48,23 +48,23 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID== id));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID == id));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return  new SuccessDataResult<Product> (_productDal.Get(p => p.ProductID == productId));
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductID == productId));
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            return new SuccessDataResult<List<ProductDetailDto>>( _productDal.GetProductDetailDtos());
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailDtos());
         }
-        
+
     }
 }
